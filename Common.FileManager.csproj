@@ -7,7 +7,7 @@
 
 	  <!-- NuGet Package Metadata -->
 	  <PackageId>Common.FileManager</PackageId>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.0</Version>
 	  <Authors>Kalule Dison</Authors>
 	  <Description>A simple file storage abstraction with local storage support and extension points for future cloud integrations.</Description>
 	  <PackageTags>FileManager FileStorage C# .NET Core</PackageTags>
