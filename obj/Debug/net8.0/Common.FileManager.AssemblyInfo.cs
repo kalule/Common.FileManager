@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A simple file storage abstraction with local storage support and extension points" +
     " for future cloud integrations.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b129fddb71360fe01b55371e5173b1d1ce20dbfe")]
 [assembly: System.Reflection.AssemblyProductAttribute("Common.FileManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Common.FileManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

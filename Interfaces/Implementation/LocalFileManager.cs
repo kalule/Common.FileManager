@@ -14,7 +14,6 @@ namespace Common.FileManager.Interfaces.Implementation
             _basePath = configuration["FileStorage:BasePath"] ?? Path.Combine(Path.GetTempPath(), "FileStorage");
             _logger = logger;
 
-            // Ensure the base path exists on startup
             if (!Directory.Exists(_basePath))
             {
                 try
@@ -25,7 +24,7 @@ namespace Common.FileManager.Interfaces.Implementation
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"Failed to create base file storage directory at: {_basePath}");
-                    // Consider throwing an exception here if the application cannot function without the directory
+                  
                 }
             }
         }
@@ -92,34 +91,6 @@ namespace Common.FileManager.Interfaces.Implementation
                 return null;
             }
         }
-
-        //public async Task DeleteFile(string fileName)
-        //{
-        //    if (string.IsNullOrWhiteSpace(fileName))
-        //    {
-        //        _logger.LogWarning("DeleteFile called with a null or empty file name.");
-        //        return;
-        //    }
-
-        //    var path = Path.Combine(_basePath, fileName);
-        //    try
-        //    {
-        //        if (File.Exists(path))
-        //        {
-        //            File.Delete(path);
-        //            _logger.LogInformation($"File deleted successfully: {path}");
-        //        }
-        //        else
-        //        {
-        //            _logger.LogDebug($"Attempted to delete non-existent file: {path}");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, $"An error occurred while deleting file: {fileName} at {path}");
-        //        // Consider re-throwing the exception if deletion is critical
-        //    }
-        //}
         public Task<bool> DeleteFile(string fileName)
         {
             try

@@ -6,8 +6,6 @@ namespace Common.FileManager.Interfaces
     {
         Task<FileInfoDto?> GetFileInfo(string fileName);
         Task<Stream?> GetFile(string fileName);
-        //Task DeleteFile(string fileName);
-
         Task<bool> DeleteFile(string fileName);
     }
 }
