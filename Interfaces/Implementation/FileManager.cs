@@ -12,7 +12,7 @@ namespace Common.FileManager.Interfaces.Implementation
         public FileManager(IConfiguration configuration, ILogger<FileManager> logger)
         {
             _basePath = configuration["FileStorage:BasePath"] ?? Path.Combine(Path.GetTempPath(), "FileStorage");
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             if (!Directory.Exists(_basePath))
             {
