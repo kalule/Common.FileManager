@@ -4,12 +4,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Common.FileManager.Interfaces.Implementation
 {
-    public class LocalFileManager : IFileManagerPapertrail
+    public class FileManager : IFileManager
     {
         private readonly string _basePath;
-        private readonly ILogger<LocalFileManager> _logger;
+        private readonly ILogger<FileManager> _logger;
 
-        public LocalFileManager(IConfiguration configuration, ILogger<LocalFileManager> logger)
+        public FileManager(IConfiguration configuration, ILogger<FileManager> logger)
         {
             _basePath = configuration["FileStorage:BasePath"] ?? Path.Combine(Path.GetTempPath(), "FileStorage");
             _logger = logger;
@@ -145,13 +145,6 @@ namespace Common.FileManager.Interfaces.Implementation
                     _logger.LogInformation($"File saved successfully to: {path}");
                     return true;
                 }
-
-                //// Consider handling metadata here if needed
-                //if (metadata != null && metadata.Any())
-                //{
-                //    // Implement logic to store metadata (e.g., in a separate file or database)
-                //    _logger.LogDebug($"Metadata provided for {fileName}: {string.Join(", ", metadata.Select(kv => $"{kv.Key}:{kv.Value}"))}");
-                //}
             }
             catch (Exception ex)
             {

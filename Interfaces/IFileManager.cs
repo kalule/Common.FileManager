@@ -27,5 +27,10 @@ namespace Common.FileManager.Interfaces
         /// <param name="fileName">The name of the file to delete.</param>
         /// <returns>True if the file was deleted successfully; false otherwise.</returns>
         Task<bool> DeleteFile(string fileName);
+
+        /// <summary>
+        /// Saves a file to the storage provider with optional metadata.
+        /// </summary>
+        Task<bool> SaveFile(string fileName, Stream contentStream, IDictionary<string, string>? metadata = null);
     }
 }
