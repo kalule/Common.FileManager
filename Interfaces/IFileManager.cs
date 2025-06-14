@@ -3,34 +3,53 @@
 namespace Common.FileManager.Interfaces
 {
     /// <summary>
-    /// Defines operations for managing files in a storage provider.
+    /// Defines a contract for managing files across various storage providers (e.g., local, Azure, S3).
     /// </summary>
     public interface IFileManager
     {
         /// <summary>
-        /// Retrieves metadata about a file (e.g., size, name, timestamp) by file name.
+        /// Retrieves metadata about a file (e.g., size, name, creation timestamp).
         /// </summary>
-        /// <param name="fileName">The name of the file to retrieve metadata for.</param>
-        /// <returns>A <see cref="FileInfoDto"/> containing file details, or null if the file does not exist.</returns>
-        Task<FileInfoDto?> GetFileInfo(string fileName);
+        /// <param name="filePath">The unique path or name of the file.</param>
+        /// <returns>File details if found; otherwise null.</returns>
+        Task<FileInfoDto?> GetFileInfo(string filePath);
 
         /// <summary>
-        /// Retrieves a file as a stream from the storage provider.
+        /// Retrieves the file contents as a stream.
         /// </summary>
-        /// <param name="fileName">The name of the file to retrieve.</param>
-        /// <returns>A <see cref="Stream"/> of the file contents, or null if the file is not found.</returns>
-        Task<Stream?> GetFile(string fileName);
+        /// <param name="filePath">The path or key to the file in storage.</param>
+        /// <returns>Stream of file contents or null if not found.</returns>
+        Task<Stream?> GetFile(string filePath);
+
+        /// <summary>
+        /// Saves a file to the storage provider.
+        /// </summary>
+        /// <param name="filePath">Destination file path or name.</param>
+        /// <param name="contentStream">File content stream.</param>
+        /// <param name="metadata">Optional metadata (e.g., content-type, tags).</param>
+        /// <returns>True if saved successfully; false otherwise.</returns>
+        Task<bool> SaveFile(string filePath, Stream contentStream, IDictionary<string, string>? metadata = null, bool overwrite = false);
 
         /// <summary>
         /// Deletes a file from the storage provider.
         /// </summary>
-        /// <param name="fileName">The name of the file to delete.</param>
-        /// <returns>True if the file was deleted successfully; false otherwise.</returns>
-        Task<bool> DeleteFile(string fileName);
+        /// <param name="filePath">Path or key of the file to delete.</param>
+        /// <returns>True if deleted; otherwise false.</returns>
+        Task<bool> DeleteFile(string filePath);
 
         /// <summary>
-        /// Saves a file to the storage provider with optional metadata.
+        /// Checks whether the file exists in storage.
         /// </summary>
-        Task<bool> SaveFile(string fileName, Stream contentStream, IDictionary<string, string>? metadata = null);
+        /// <param name="filePath">Path of the file to check.</param>
+        /// <returns>True if it exists; otherwise false.</returns>
+        Task<bool> FileExists(string filePath);
+
+        /// <summary>
+        /// Generates a temporary download URL (if supported by provider).
+        /// </summary>
+        /// <param name="filePath">Path of the file to generate the link for.</param>
+        /// <param name="expiryMinutes">Time in minutes before the link expires.</param>
+        /// <returns>Signed URL or null if unsupported.</returns>
+        Task<string?> GetSignedUrl(string filePath, int expiryMinutes = 60);
     }
 }
