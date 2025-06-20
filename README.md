@@ -1,12 +1,10 @@
 # Common.FileManager
 
-[![NuGet version](https://img.shields.io/nuget/v/Common.FileManager.svg?style=flat-square)](https://www.nuget.org/packages/Common.FileManager)
-
-**Common.FileManager** is a lightweight and extensible file management library for .NET applications. It provides a consistent interface for file storage operations with a local file system implementation out of the box and is designed to be extended for cloud storage providers like Azure Blob Storage or Amazon S3.
+Common.FileManager** is a lightweight and extensible file management library for .NET applications. It provides a consistent interface for file storage operations with a local file system implementation out of the box and is designed to be extended for cloud storage providers like Azure Blob Storage or Amazon S3.
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Installation](#-installation)
@@ -21,7 +19,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 - ✅ Upload and retrieve files via stream
 - ✅ Get file metadata (name, size, timestamp)
@@ -32,7 +30,7 @@
 
 ---
 
-## 📦 Installation
+## Installation
 
 Install via NuGet:
 
@@ -40,11 +38,9 @@ Install via NuGet:
 dotnet add package Common.FileManager
 ```
 
-🔗 [View on NuGet](https://www.nuget.org/packages/Common.FileManager)
-
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 Add the base path to your `appsettings.json`:
 
@@ -58,7 +54,7 @@ Add the base path to your `appsettings.json`:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. Install the NuGet package:
 
@@ -76,7 +72,7 @@ builder.Services.AddScoped<IFileManagerPapertrail, LocalFileManager>();
 
 ---
 
-## 🧑‍💻 Usage Example
+## Usage Example
 
 ### Uploading a file in a controller
 
@@ -92,14 +88,14 @@ public async Task<IActionResult> Upload(IFormFile file)
 
 ---
 
-## 📁 Interfaces
+## Interfaces
 
 - `IFileManagerPapertrail` – supports saving, retrieving, deleting files and getting file metadata
 - `LocalFileManager` – default implementation using the local file system
 
 ---
 
-## 🛠️ Extending to Cloud Providers
+## Extending to Cloud Providers
 
 To add Azure/S3 support:
 
@@ -113,7 +109,7 @@ builder.Services.AddScoped<IFileManagerPapertrail, AzureFileManager>();
 
 ---
 
-## 💬 FAQ
+## FAQ
 
 **Q: Can I use this in a web API project?**  
 A: Yes, just register `IFileManagerPapertrail` and inject it in your controllers.
@@ -123,13 +119,13 @@ A: The file will be overwritten unless you implement versioning.
 
 ---
 
-## 🔒 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 📬 Contributing
+## Contributing
 
 Feel free to open issues or submit PRs to extend support for:
 - Azure Blob Storage
